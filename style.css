@@ -1,0 +1,491 @@
+/* ---------- Импорт шрифтов ---------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+
+/* ---------- Сброс и база ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: radial-gradient(circle at 10% 20%, rgb(118, 118, 210) 0%, rgba(10, 10, 15, 1) 100%);
+    color: #eef2ff;
+    line-height: 1.5;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Анимированный градиентный фон (доп. слой) */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 2px, transparent 2px, transparent 8px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Контейнер с относительным z-index */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+/* ---------- Шапка ---------- */
+header {
+    text-align: center;
+    padding: 4rem 0 3rem;
+    backdrop-filter: blur(12px);
+    background: rgba(15, 15, 25, 0.6);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-radius: 0 0 2rem 2rem;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ffd89b, #c7e9fb);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    letter-spacing: -0.02em;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    margin-bottom: 0.5rem;
+}
+
+header p {
+    font-size: 1.2rem;
+    color: #b9c7d9;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+}
+
+/* ---------- Карточки на главной (стеклянные) ---------- */
+.cards-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    margin: 4rem 0;
+}
+
+.card {
+    background: rgba(25, 30, 40, 0.6);
+    backdrop-filter: blur(12px);
+    border-radius: 2rem;
+    padding: 1.8rem 1.5rem;
+    text-align: center;
+    width: 240px;
+    border: 1px solid rgba(255,255,255,0.15);
+    transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+    opacity: 0;
+    transition: opacity 0.4s;
+    pointer-events: none;
+}
+
+.card:hover {
+    transform: translateY(-12px);
+    border-color: rgba(255,215,150,0.6);
+    box-shadow: 0 25px 45px rgba(0,0,0,0.4);
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+.avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 1rem;
+    border: 2px solid rgba(255,215,150,0.6);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+}
+
+.card:hover .avatar {
+    transform: scale(1.03);
+}
+
+.card h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0.5rem 0 0.25rem;
+    background: linear-gradient(135deg, #fff, #ddd);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.category {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #ffd89b;
+    background: rgba(0,0,0,0.4);
+    display: inline-block;
+    padding: 0.2rem 0.8rem;
+    border-radius: 2rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.5px;
+}
+
+.short-bio {
+    font-size: 0.85rem;
+    color: #b0c0d0;
+    margin: 0.5rem 0 1.2rem;
+}
+
+.btn {
+    display: inline-block;
+    background: rgba(255,216,155,0.2);
+    backdrop-filter: blur(4px);
+    color: #ffd89b;
+    text-decoration: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 2rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1px solid rgba(255,216,155,0.5);
+    transition: all 0.2s;
+}
+
+.btn:hover {
+    background: #ffd89b;
+    color: #1e1e2a;
+    border-color: #ffd89b;
+    transform: scale(0.96);
+}
+
+/* ---------- Футер ---------- */
+footer {
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 3rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(8px);
+    background: rgba(10,12,18,0.5);
+}
+
+footer a {
+    color: #ffd89b;
+    text-decoration: none;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+footer a:hover {
+    text-decoration: underline;
+    text-shadow: 0 0 3px #ffd89b;
+}
+
+/* ---------- Страницы участников ---------- */
+.back-link {
+    display: inline-block;
+    margin: 1rem 0 0;
+    color: #ffd89b;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: 0.2s;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+    letter-spacing: 0.3px;
+}
+
+.participant-header {
+    text-align: center;
+    padding: 2.5rem 0;
+    backdrop-filter: blur(10px);
+    background: rgba(20, 25, 35, 0.5);
+    border-radius: 2rem;
+    margin: 1rem 0;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.participant-header .avatar {
+    width: 130px;
+    height: 130px;
+    margin-bottom: 1rem;
+}
+
+.participant-header h1 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #fff, #ffd89b);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.category-badge {
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(4px);
+    display: inline-block;
+    padding: 0.3rem 1.2rem;
+    border-radius: 3rem;
+    font-size: 0.9rem;
+    color: #ffd89b;
+    font-weight: 500;
+    border: 1px solid rgba(255,216,155,0.4);
+}
+
+/* Блоки контента (стеклянные) */
+.about-me, .interests, .recommendations-section {
+    margin: 2rem 0;
+    background: rgba(20, 25, 35, 0.5);
+    backdrop-filter: blur(12px);
+    border-radius: 2rem;
+    padding: 1.8rem;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: all 0.2s;
+}
+
+.about-me:hover, .interests:hover, .recommendations-section:hover {
+    border-color: rgba(255,216,155,0.3);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.about-me h2, .interests h2, .recommendations-section h2 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    border-left: 4px solid #ffd89b;
+    padding-left: 1rem;
+    color: #fff;
+}
+
+.interests ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.interests li {
+    margin: 0.8rem 0;
+    padding-left: 1.8rem;
+    position: relative;
+}
+
+.interests li::before {
+    content: "✦";
+    color: #ffd89b;
+    font-size: 1.2rem;
+    position: absolute;
+    left: 0;
+    top: -2px;
+}
+
+.rec-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+}
+
+.rec-item {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1rem;
+    border-radius: 1.5rem;
+    transition: all 0.2s;
+    background: rgba(0,0,0,0.2);
+}
+
+.rec-item:hover {
+    background: rgba(255,216,155,0.05);
+    transform: translateX(5px);
+}
+
+.rec-item img {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+    border-radius: 1.2rem;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.3);
+    transition: 0.2s;
+}
+
+.rec-item:hover img {
+    transform: scale(1.02);
+}
+
+.rec-item h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #ffd89b;
+}
+
+.rec-item p {
+    color: #cddae9;
+    line-height: 1.4;
+}
+
+.quote {
+    font-style: italic;
+    font-size: 1.1rem;
+    text-align: center;
+    color: #cddae9;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background: rgba(0,0,0,0.3);
+    border-radius: 2rem;
+    border-left: 3px solid #ffd89b;
+    border-right: 3px solid #ffd89b;
+}
+
+/* ---------- Блок случайного факта ---------- */
+.random-fact {
+    text-align: center;
+    background: rgba(20, 25, 35, 0.6);
+    backdrop-filter: blur(12px);
+    border-radius: 2rem;
+    padding: 1.8rem;
+    margin: 2rem auto;
+    max-width: 650px;
+    border: 1px solid rgba(255,255,255,0.15);
+}
+
+.random-fact h3 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 0.8rem;
+    color: #ffd89b;
+}
+
+.btn-small {
+    background: rgba(255,216,155,0.2);
+    border: 1px solid rgba(255,216,155,0.5);
+    color: #ffd89b;
+    padding: 0.4rem 1.2rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    margin-top: 0.8rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.2s;
+}
+
+.btn-small:hover {
+    background: #ffd89b;
+    color: #1e1e2a;
+    border-color: #ffd89b;
+}
+
+/* ---------- Страница "О проекте" ---------- */
+.about-section {
+    background: rgba(20, 25, 35, 0.5);
+    backdrop-filter: blur(12px);
+    border-radius: 2rem;
+    padding: 2rem;
+    margin: 2rem 0;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.about-section h2 {
+    margin: 1.5rem 0 1rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #ffd89b;
+}
+
+.about-section h2:first-child {
+    margin-top: 0;
+}
+
+.role-list {
+    list-style: none;
+    margin-top: 1rem;
+}
+
+.role-list li {
+    margin: 0.8rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.role-list li::before {
+    content: "✨";
+    color: #ffd89b;
+    position: absolute;
+    left: 0;
+}
+
+/* ---------- Кастомный скроллбар ---------- */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #111217;
+}
+::-webkit-scrollbar-thumb {
+    background: #ffd89b;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #e6c482;
+}
+
+/* ---------- Адаптивность ---------- */
+@media (max-width: 700px) {
+    .rec-item {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .rec-item img {
+        width: 100%;
+        max-width: 200px;
+        height: auto;
+    }
+    .cards-grid {
+        gap: 1.2rem;
+    }
+    .card {
+        width: calc(50% - 1rem);
+        min-width: 170px;
+        padding: 1.2rem;
+    }
+    .avatar {
+        width: 100px;
+        height: 100px;
+    }
+    header h1 {
+        font-size: 2.2rem;
+    }
+    .participant-header h1 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        width: 100%;
+        max-width: 280px;
+    }
+}
