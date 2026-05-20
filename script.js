@@ -1,12 +1,9 @@
-// Массив фактов о команде
 const facts = [
-    "Денис коллекционирует ретро-приставки, у него их 7 штук.",
-    "Настя может приготовить 10 видов пасты без рецепта.",
-    "Никита играет на гитаре и пишет свои песни.",
-    "Лиза однажды посмотрела 4 фильма за день на кинофестивале.",
-    "Тимур написал рассказ, который опубликовали в городском альманахе.",
-    "Наша команда собралась впервые за чашкой кофе и сразу придумала тему сайта.",
-    "Все мы из разных городов: Москва, Казань, Новосибирск, Ростов и Санкт-Петербург."
+    "Лиза 10 лет занималась фехтованием",
+    "Лиза поступила на IT-специальность, не зная, как работает комп".
+    "Настя 15 лет занимается танцами",
+    "У Насти аллергия на холод",
+    "Скоро здесь будет интересный факт №6"
 ];
 
 function displayRandomFact() {
@@ -17,10 +14,37 @@ function displayRandomFact() {
     }
 }
 
+
 document.addEventListener("DOMContentLoaded", () => {
     const btn = document.getElementById("generateFactBtn");
     if (btn) {
         btn.addEventListener("click", displayRandomFact);
     }
     displayRandomFact();
+
+    // ----- Блок для темы -----
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+    
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        body.classList.add('dark-theme');
+        if (themeToggle) themeToggle.checked = true;
+    }
+    
+    function setTheme(isDark) {
+        if (isDark) {
+            body.classList.add('dark-theme');
+            localStorage.setItem('theme', 'dark');
+        } else {
+            body.classList.remove('dark-theme');
+            localStorage.setItem('theme', 'light');
+        }
+    }
+    
+    if (themeToggle) {
+        themeToggle.addEventListener('change', (e) => {
+            setTheme(e.target.checked);
+        });
+    }
 });
